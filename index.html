@@ -8,261 +8,759 @@
 
     <style>
         * {
-            box-sizing: border-box;
             margin: 0;
             padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
         }
 
         body {
-            font-family: Arial, sans-serif;
-            background: #f7f8fa;
-            color: #1f2937;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI",
+                         Roboto, Helvetica, Arial, sans-serif;
+            background: #f8fafc;
+            color: #172033;
             line-height: 1.6;
         }
 
-        .container {
-            max-width: 1000px;
-            margin: auto;
-            padding: 60px 30px;
+        a {
+            color: inherit;
         }
 
-        header {
-            padding: 70px 0;
+        .container {
+            width: min(1100px, 90%);
+            margin: auto;
+        }
+
+        /* NAVIGATION */
+
+        nav {
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            background: rgba(248, 250, 252, 0.92);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid #e5e7eb;
+        }
+
+        .nav-content {
+            height: 70px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-weight: 700;
+            font-size: 20px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 28px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #596273;
+            font-size: 15px;
+        }
+
+        .nav-links a:hover {
+            color: #172033;
+        }
+
+        /* HERO */
+
+        .hero {
+            min-height: 650px;
+            display: flex;
+            align-items: center;
+        }
+
+        .hero-content {
+            max-width: 850px;
+        }
+
+        .eyebrow {
+            font-size: 15px;
+            font-weight: 600;
+            color: #596273;
+            margin-bottom: 18px;
+            letter-spacing: 0.5px;
         }
 
         h1 {
-            font-size: 48px;
+            font-size: clamp(48px, 7vw, 76px);
+            line-height: 1.05;
+            letter-spacing: -3px;
+            margin-bottom: 20px;
+        }
+
+        .hero h2 {
+            font-size: clamp(24px, 4vw, 34px);
+            font-weight: 500;
+            color: #596273;
+            margin-bottom: 25px;
+        }
+
+        .hero-description {
+            max-width: 700px;
+            font-size: 19px;
+            color: #596273;
+            margin-bottom: 30px;
+        }
+
+        .availability {
+            display: inline-block;
+            padding: 9px 15px;
+            border: 1px solid #d9dee7;
+            border-radius: 999px;
+            background: white;
+            font-size: 14px;
+            margin-bottom: 30px;
+        }
+
+        .buttons {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+
+        .button {
+            display: inline-block;
+            padding: 12px 20px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 15px;
+            border: 1px solid #172033;
+        }
+
+        .button.primary {
+            background: #172033;
+            color: white;
+        }
+
+        .button.secondary {
+            background: white;
+            color: #172033;
+        }
+
+        /* SECTIONS */
+
+        section {
+            padding: 90px 0;
+        }
+
+        .section-label {
+            font-size: 14px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            color: #7a8494;
             margin-bottom: 10px;
         }
 
-        .subtitle {
-            font-size: 24px;
-            color: #555;
-            margin-bottom: 25px;
+        h2.section-title {
+            font-size: 36px;
+            letter-spacing: -1px;
+            margin-bottom: 40px;
         }
 
-        .intro {
-            max-width: 700px;
+        /* ABOUT */
+
+        .about {
+            max-width: 800px;
             font-size: 18px;
-            color: #555;
+            color: #596273;
         }
 
-        .links {
-            margin-top: 25px;
+        .about p {
+            margin-bottom: 18px;
         }
 
-        .links a {
-            display: inline-block;
-            margin-right: 15px;
-            padding: 10px 18px;
-            border: 1px solid #222;
-            border-radius: 6px;
-            text-decoration: none;
-            color: #222;
-        }
+        /* PROJECTS */
 
-        section {
-            margin-top: 60px;
-        }
-
-        h2 {
-            font-size: 28px;
-            margin-bottom: 25px;
+        .projects {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 22px;
         }
 
         .project {
             background: white;
+            border: 1px solid #e3e7ed;
+            border-radius: 14px;
             padding: 30px;
-            border-radius: 10px;
-            margin-bottom: 25px;
-            border: 1px solid #e5e7eb;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .project:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 30px rgba(20, 30, 50, 0.08);
+        }
+
+        .project-number {
+            font-size: 13px;
+            color: #8992a1;
+            margin-bottom: 20px;
         }
 
         .project h3 {
-            font-size: 22px;
+            font-size: 23px;
+            margin-bottom: 14px;
+        }
+
+        .project p {
+            color: #596273;
+            margin-bottom: 18px;
+        }
+
+        .project-role {
+            font-size: 14px;
+            color: #303a4c;
+            margin-bottom: 18px;
+        }
+
+        .technologies {
+            font-size: 13px;
+            color: #7a8494;
+            padding-top: 15px;
+            border-top: 1px solid #edf0f4;
+            margin-bottom: 20px;
+        }
+
+        .project-link {
+            color: #172033;
+            font-weight: 600;
+            text-decoration: none;
+            font-size: 14px;
+        }
+
+        /* EXPERIENCE */
+
+        .experience-item {
+            border-left: 2px solid #dce1e8;
+            padding-left: 28px;
+            margin-bottom: 45px;
+        }
+
+        .experience-date {
+            font-size: 14px;
+            color: #7a8494;
+            margin-bottom: 8px;
+        }
+
+        .experience-item h3 {
+            font-size: 23px;
+            margin-bottom: 5px;
+        }
+
+        .experience-place {
+            color: #596273;
+            margin-bottom: 15px;
+        }
+
+        .experience-item p {
+            max-width: 800px;
+            color: #596273;
+        }
+
+        /* SKILLS */
+
+        .skills {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+        }
+
+        .skill-category {
+            background: white;
+            border: 1px solid #e3e7ed;
+            border-radius: 12px;
+            padding: 25px;
+        }
+
+        .skill-category h3 {
+            font-size: 17px;
             margin-bottom: 12px;
         }
 
-        .project a {
-            color: #2563eb;
-            text-decoration: none;
+        .skill-category p {
+            color: #596273;
+            font-size: 15px;
         }
 
-        .tags {
-            margin-top: 15px;
-            color: #666;
+        /* EDUCATION */
+
+        .education-item {
+            margin-bottom: 35px;
         }
+
+        .education-date {
+            font-size: 14px;
+            color: #7a8494;
+            margin-bottom: 6px;
+        }
+
+        .education-item h3 {
+            font-size: 21px;
+            margin-bottom: 5px;
+        }
+
+        .education-item p {
+            color: #596273;
+        }
+
+        /* CONTACT */
+
+        .contact-box {
+            background: white;
+            border: 1px solid #e3e7ed;
+            border-radius: 14px;
+            padding: 45px;
+            text-align: center;
+        }
+
+        .contact-box h2 {
+            font-size: 32px;
+            margin-bottom: 12px;
+        }
+
+        .contact-box p {
+            color: #596273;
+            margin-bottom: 25px;
+        }
+
+        /* FOOTER */
 
         footer {
-            margin-top: 80px;
-            padding-top: 25px;
-            border-top: 1px solid #ddd;
-            color: #666;
+            border-top: 1px solid #e5e7eb;
+            padding: 30px 0;
+            color: #7a8494;
+            font-size: 14px;
         }
 
-        @media (max-width: 600px) {
-            h1 {
-                font-size: 38px;
+        /* MOBILE */
+
+        @media (max-width: 750px) {
+
+            .nav-links {
+                display: none;
             }
 
-            .subtitle {
-                font-size: 20px;
+            .hero {
+                min-height: 550px;
+            }
+
+            h1 {
+                letter-spacing: -2px;
+            }
+
+            .projects,
+            .skills {
+                grid-template-columns: 1fr;
+            }
+
+            section {
+                padding: 65px 0;
+            }
+
+            .contact-box {
+                padding: 30px 20px;
             }
         }
     </style>
 </head>
 
+
 <body>
 
-<div class="container">
+<!-- NAVIGATION -->
 
-    <header>
-        <h1>Imen Miloudi</h1>
+<nav>
+    <div class="container nav-content">
 
-        <div class="subtitle">
+        <div class="logo">
+            Imen Miloudi
+        </div>
+
+        <ul class="nav-links">
+            <li><a href="#about">About</a></li>
+            <li><a href="#projects">Projects</a></li>
+            <li><a href="#experience">Experience</a></li>
+            <li><a href="#skills">Skills</a></li>
+            <li><a href="#education">Education</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+
+    </div>
+</nav>
+
+
+<main>
+
+<!-- HERO -->
+
+<section class="hero">
+    <div class="container hero-content">
+
+        <div class="eyebrow">
             M2 Applied Mathematics, Statistics — Data Science
         </div>
 
-        <p class="intro">
+        <h1>
+            Imen Miloudi
+        </h1>
+
+        <h2>
+            Data Science &amp; Machine Learning
+        </h2>
+
+        <p class="hero-description">
             Data Science student at Aix-Marseille University, with experience
             in developing and optimizing Python tools for complex data analysis.
         </p>
 
-        <div class="links">
-            <a href="https://github.com/Imen-Miloudi">
+        <div class="availability">
+            ● Seeking a 4–6 month Data Science Internship · Open worldwide
+        </div>
+
+        <div class="buttons">
+            <a class="button primary"
+               href="mailto:imenmiloudi@icloud.com">
+                Get in touch
+            </a>
+
+            <a class="button secondary"
+               href="https://github.com/Imen-Miloudi"
+               target="_blank">
                 GitHub
             </a>
-
-            <a href="mailto:imenmiloudi@icloud.com">
-                Email
-            </a>
         </div>
-    </header>
+
+    </div>
+</section>
 
 
-    <section>
-        <h2>About Me</h2>
+<!-- ABOUT -->
 
-        <p>
-            I am currently pursuing an M2 in Applied Mathematics and Statistics,
-            specializing in Data Science at Aix-Marseille University.
-        </p>
+<section id="about">
+    <div class="container">
 
-        <p>
-            My interests include machine learning, statistical learning,
-            explainable AI, data analysis and Python development.
-        </p>
+        <div class="section-label">
+            About
+        </div>
 
-        <p>
-            I am currently seeking a 4–6 month Data Science internship
-            and am open to opportunities worldwide.
-        </p>
-    </section>
+        <h2 class="section-title">
+            About Me
+        </h2>
 
-
-    <section>
-        <h2>Featured Projects</h2>
-
-        <div class="project">
-
-            <h3>🔬 Trajectory Clustering Analysis (TCA)</h3>
+        <div class="about">
 
             <p>
-                Python package for the analysis and clustering of
-                unidimensional and multidimensional trajectories,
-                with applications to healthcare data.
+                I am currently pursuing an M2 in Applied Mathematics and
+                Statistics, specializing in Data Science at Aix-Marseille
+                University.
             </p>
 
             <p>
-                During my research internship at SESSTIM, I worked on
-                optimizing the SWoTTeD tensor decomposition method,
-                improving the training process, developing visualization
-                tools and designing a parameter-selection strategy.
-            </p>
-
-            <p class="tags">
-                Python · PyTorch · Tensor Decomposition · Git
+                My interests include machine learning, statistical learning,
+                explainable AI, data analysis and Python development.
             </p>
 
             <p>
-                <a href="https://github.com/QuanTIMLab/TrajectoryClusteringAnalysis">
+                During my research internship at SESSTIM, I worked on the
+                development and optimization of Python tools for healthcare
+                trajectory analysis.
+            </p>
+
+        </div>
+
+    </div>
+</section>
+
+
+<!-- PROJECTS -->
+
+<section id="projects">
+    <div class="container">
+
+        <div class="section-label">
+            Selected Work
+        </div>
+
+        <h2 class="section-title">
+            Featured Projects
+        </h2>
+
+
+        <div class="projects">
+
+            <!-- TCA -->
+
+            <article class="project">
+
+                <div class="project-number">
+                    01 · RESEARCH / DATA SCIENCE
+                </div>
+
+                <h3>
+                    Trajectory Clustering Analysis (TCA)
+                </h3>
+
+                <p>
+                    Python package for the analysis and clustering of
+                    unidimensional and multidimensional trajectories,
+                    with applications to healthcare data.
+                </p>
+
+                <div class="project-role">
+                    <strong>My contribution</strong><br>
+                    Optimization of the SWoTTeD tensor decomposition
+                    training process, learning-rate scheduling,
+                    visualization tools and parameter-selection strategy.
+                </div>
+
+                <div class="technologies">
+                    Python · PyTorch · Tensor Decomposition · Git
+                </div>
+
+                <a class="project-link"
+                   href="https://github.com/QuanTIMLab/TrajectoryClusteringAnalysis"
+                   target="_blank">
                     View project →
                 </a>
-            </p>
 
-        </div>
+            </article>
 
 
-        <div class="project">
+            <!-- XAI -->
 
-            <h3>🤖 Explainable AI — LIME vs SHAP</h3>
+            <article class="project">
 
-            <p>
-                Comparative study of LIME and SHAP for explaining
-                machine learning models, with experiments on
-                Random Forest and XGBoost.
-            </p>
+                <div class="project-number">
+                    02 · MACHINE LEARNING / XAI
+                </div>
 
-            <p class="tags">
-                Python · Scikit-learn · XGBoost · LIME · SHAP
-            </p>
+                <h3>
+                    Explainable AI — LIME vs SHAP
+                </h3>
 
-            <p>
-                <a href="https://github.com/Imen-Miloudi/xai-lime-shap">
+                <p>
+                    Comparative study of LIME and SHAP for explaining
+                    machine learning models, focusing on reliability,
+                    stability and interpretability.
+                </p>
+
+                <div class="project-role">
+                    <strong>Research focus</strong><br>
+                    Experimental comparison using Random Forest and
+                    XGBoost models across several datasets.
+                </div>
+
+                <div class="technologies">
+                    Python · Scikit-learn · XGBoost · LIME · SHAP
+                </div>
+
+                <a class="project-link"
+                   href="https://github.com/Imen-Miloudi/xai-lime-shap"
+                   target="_blank">
                     View project →
                 </a>
-            </p>
+
+            </article>
 
         </div>
 
-    </section>
+    </div>
+</section>
 
 
-    <section>
-        <h2>Technical Skills</h2>
+<!-- EXPERIENCE -->
 
-        <p>
-            <strong>Programming & Data:</strong>
-            Python · Pandas · NumPy · SciPy · Scikit-learn · PyTorch
-        </p>
+<section id="experience">
+    <div class="container">
 
-        <p>
-            <strong>Visualization & XAI:</strong>
-            Matplotlib · Seaborn · LIME · SHAP
-        </p>
+        <div class="section-label">
+            Experience
+        </div>
 
-        <p>
-            <strong>Tools:</strong>
-            SQL · Git · Jupyter · VS Code · Docker · FastAPI · Streamlit
-        </p>
+        <h2 class="section-title">
+            Research Experience
+        </h2>
 
-    </section>
+        <div class="experience-item">
 
+            <div class="experience-date">
+                May 2026 — August 2026
+            </div>
 
-    <section>
-        <h2>Experience</h2>
+            <h3>
+                Research Internship in Data Science
+            </h3>
 
-        <div class="project">
-
-            <h3>Research Internship in Data Science — SESSTIM</h3>
+            <div class="experience-place">
+                SESSTIM — QuanTIM · Marseille, France
+            </div>
 
             <p>
                 Development and optimization of the TCA Python package
-                for healthcare trajectory analysis, including work on
-                temporal tensor decomposition, visualization and
-                parameter optimization.
+                for healthcare trajectory analysis. Work included
+                temporal tensor decomposition, training optimization,
+                visualization and parameter selection.
             </p>
 
         </div>
 
-    </section>
+    </div>
+</section>
 
 
-    <footer>
-        <p>© 2026 Imen Miloudi</p>
-    </footer>
+<!-- SKILLS -->
 
-</div>
+<section id="skills">
+    <div class="container">
+
+        <div class="section-label">
+            Technical Stack
+        </div>
+
+        <h2 class="section-title">
+            Skills
+        </h2>
+
+        <div class="skills">
+
+            <div class="skill-category">
+                <h3>Programming &amp; Data</h3>
+                <p>
+                    Python · Pandas · NumPy · SciPy · Scikit-learn · PyTorch
+                </p>
+            </div>
+
+            <div class="skill-category">
+                <h3>Machine Learning &amp; XAI</h3>
+                <p>
+                    Statistical Learning · Random Forest · XGBoost ·
+                    LIME · SHAP
+                </p>
+            </div>
+
+            <div class="skill-category">
+                <h3>Development &amp; Tools</h3>
+                <p>
+                    SQL · Git · Jupyter · VS Code · Docker · FastAPI ·
+                    Streamlit
+                </p>
+            </div>
+
+        </div>
+
+    </div>
+</section>
+
+
+<!-- EDUCATION -->
+
+<section id="education">
+    <div class="container">
+
+        <div class="section-label">
+            Education
+        </div>
+
+        <h2 class="section-title">
+            Academic Background
+        </h2>
+
+
+        <div class="education-item">
+
+            <div class="education-date">
+                2025 — 2027
+            </div>
+
+            <h3>
+                M2 Applied Mathematics, Statistics — Data Science
+            </h3>
+
+            <p>
+                Aix-Marseille University
+            </p>
+
+        </div>
+
+
+        <div class="education-item">
+
+            <div class="education-date">
+                2022 — 2025
+            </div>
+
+            <h3>
+                Bachelor's Degree in Mathematics
+            </h3>
+
+            <p>
+                Aix-Marseille University · Mathematics ·
+                Previous MPCI pathway · Highest Honors
+            </p>
+
+        </div>
+
+    </div>
+</section>
+
+
+<!-- CONTACT -->
+
+<section id="contact">
+    <div class="container">
+
+        <div class="contact-box">
+
+            <h2>
+                Let's work together.
+            </h2>
+
+            <p>
+                I am currently looking for a 4–6 month Data Science
+                internship and am open to opportunities worldwide.
+            </p>
+
+            <div class="buttons" style="justify-content: center;">
+
+                <a class="button primary"
+                   href="mailto:imenmiloudi@icloud.com">
+                    imenmiloudi@icloud.com
+                </a>
+
+                <a class="button secondary"
+                   href="https://github.com/Imen-Miloudi"
+                   target="_blank">
+                    GitHub
+                </a>
+
+            </div>
+
+        </div>
+
+    </div>
+</section>
+
+</main>
+
+
+<footer>
+    <div class="container">
+        © 2026 Imen Miloudi · Data Science
+    </div>
+</footer>
 
 </body>
 </html>
